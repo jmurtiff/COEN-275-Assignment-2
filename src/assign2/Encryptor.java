@@ -15,6 +15,15 @@ public class Encryptor implements Encryptable {
 		{
 			this.offset = shift;
 		}
+		else
+		{
+			//Should we throw an exception, because if we do then the rest of the test cases will not execute. 
+			//throw new IllegalArgumentException();
+			System.out.println("You have instantiated a Encryptor object with a offset of 0 or 26, the encrypt "
+					+ "and decrypt functions will not work for this object. Please set the Offset value between 1 and "
+					+ "25 or create a new instance of an Encryptor object with an appropriate offset value.");
+			this.offset = shift;
+		}
 	}
 	
 	public void setOffset(int shift)
@@ -23,57 +32,69 @@ public class Encryptor implements Encryptable {
 		{
 			this.offset = shift;
 		}
+		else
+		{
+			System.out.println("You have set the Offset for an Encryptor object with a value of 0 or 26, the encrypt "
+					+ "and decrypt functions will not work for this object.");
+			this.offset = shift;
+		}
 	}
 	
 	public String encrypt (String plaintext)
 	{
-		int length = plaintext.length();
-		String upperCase = plaintext.toUpperCase();
-		String finalString = "";
-		for (int i = 0; i < length; i++)
+		if(this.offset == 0 || this.offset == 26)
 		{
-			if(Character.isLetter(upperCase.charAt(i)))
-			{
-				int originalAlphabetPosition = upperCase.charAt(i) - 'A';
-				int newAlphabetPosition = (originalAlphabetPosition + this.offset) % 26;
-				char encrypted_letter = (char) ('A' + newAlphabetPosition);
-				finalString = finalString + encrypted_letter;
-			}
-			else
-			{
-				//we append it to the final encrypted string
-				finalString = finalString + upperCase.charAt(i);
-			}
+			return "The encrypt function does not work for offsets of 0 and 26.";
 		}
-		return finalString;
+		else
+		{
+			int length = plaintext.length();
+			String upperCase = plaintext.toUpperCase();
+			String finalString = "";
+			for (int i = 0; i < length; i++)
+			{
+				if(Character.isLetter(upperCase.charAt(i)))
+				{
+					int originalAlphabetPosition = upperCase.charAt(i) - 'A';
+					int newAlphabetPosition = (originalAlphabetPosition + this.offset) % 26;
+					char encrypted_letter = (char) ('A' + newAlphabetPosition);
+					finalString = finalString + encrypted_letter;
+				}
+				else
+				{
+					//we append it to the final encrypted string
+					finalString = finalString + upperCase.charAt(i);
+				}
+			}
+			return finalString;
+		}
 	}
 	
 	public String decrypt (String encryptedText)
 	{
-		int length = encryptedText.length();
-		String upperCase = encryptedText.toUpperCase();
-		String finalString = "";
-		for (int i = 0; i < length; i++)
+		if(this.offset == 0 || this.offset == 26)
 		{
-			if(Character.isLetter(upperCase.charAt(i)))
-			{
-				int decrypted_letter = (upperCase.charAt(i) - 'A' + (26 - this.offset)) % 26 + 'A';
-				char encrypted_letter = (char) decrypted_letter;
-				finalString = finalString + encrypted_letter;
-			}
-			else
-			{
-				finalString = finalString + upperCase.charAt(i);
-			}
+			return "The decrypt function does not work for offsets of 0 and 26.";
 		}
-		return finalString;
+		else
+		{
+			int length = encryptedText.length();
+			String upperCase = encryptedText.toUpperCase();
+			String finalString = "";
+			for (int i = 0; i < length; i++)
+			{
+				if(Character.isLetter(upperCase.charAt(i)))
+				{
+					int decrypted_letter = (upperCase.charAt(i) - 'A' + (26 - this.offset)) % 26 + 'A';
+					char encrypted_letter = (char) decrypted_letter;
+					finalString = finalString + encrypted_letter;
+				}
+				else
+				{
+					finalString = finalString + upperCase.charAt(i);
+				}
+			}
+			return finalString;
+		}
 	}
-	
-	public static void main(String[] args) 
-	{
-		Encryptor e1 = new Encryptor (1);
-		System.out.println(e1.encrypt("This is a test!"));
-		System.out.println(e1.decrypt("Uijt jt b uftu!"));
-	}
-	
 }
