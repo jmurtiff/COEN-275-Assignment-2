@@ -8,7 +8,7 @@ public class ATM {
 	
 	private Encryptor passwordEncoder;
 	
-	private static int firstElement = 0;
+	private int firstElement = 0;
 	
 	public ATM()
 	{

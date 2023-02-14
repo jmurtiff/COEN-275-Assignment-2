@@ -10,6 +10,14 @@ public class BankAccount {
 	
 	private String password;
 	
+	public BankAccount()
+	{
+		accntId = "A";
+		name = "A";
+		balance = 0.00;
+		password = "A";
+	}
+	
 	public BankAccount(String accndId, String name, double balance, String password)
 	{
 		if(accndId == "")
