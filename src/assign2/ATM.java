@@ -14,13 +14,17 @@ public class ATM {
 	{
 		accounts = new Vector<BankAccount>(10);
 		
-		//What should the offset for passwordEncoder be, should it be 1 or a random value betwwen
+		//What should the offset for passwordEncoder be, should it be 1 or a random value between
 		//1 and 25?
 		passwordEncoder = new Encryptor();
 	}
 	
 	public void addAccount(String acctId, String name, double balance, String password)
 	{
+		//Should we check that valid values of acctId, name, balance, and password exist here, that 
+		//way if the user creates a bankAccount that does not make sense, we catch it here instead of 
+		//in the constructor of BankAccount.
+		
 		//Should check if the account already exists in the Vector "accounts", if it does then
 		//we do not add the account at all.
 		if(firstElement == 0)
