@@ -10,6 +10,8 @@ public class BankAccount {
 	
 	private String password;
 	
+	private static double minimumBalance = 10.00;
+	
 	public BankAccount()
 	{
 		accntId = "A";
@@ -40,9 +42,10 @@ public class BankAccount {
 		}
 		
 		
-		if(Double.compare(balance, 0.0) < 0)
+		if(Double.compare(balance, 0.0) < 0 || balance < minimumBalance)
 		{
-			throw new IllegalArgumentException("BankAccount balance must be a positive value or 0.");
+			throw new IllegalArgumentException("BankAccount balance cannot be a negative value or be below the "
+					+ " minimum balance value of $10.00.");
 		}
 		else
 		{

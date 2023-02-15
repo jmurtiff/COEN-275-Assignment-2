@@ -136,6 +136,8 @@ public class ATM {
 		
 		a1.addAccount("A123", "M.Jones", 1000.00, "fall-quarter");
 		
+		System.out.println(a1.getMoney("", "", 50.00));
+		
 	}
 
 }
