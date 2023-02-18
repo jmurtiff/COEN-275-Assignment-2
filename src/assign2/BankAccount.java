@@ -45,7 +45,7 @@ public class BankAccount {
 		if(Double.compare(balance, 0.0) < 0 || balance < minimumBalance)
 		{
 			throw new IllegalArgumentException("BankAccount balance cannot be a negative value or be below the "
-					+ " minimum balance value of $10.00.");
+					+ "minimum balance value of $10.00.");
 		}
 		else
 		{
@@ -122,15 +122,15 @@ public class BankAccount {
 		}
 	}
 	
-	/*
+	
 	public static void main(String[] args) 
 	{
 		BankAccount b1 = new BankAccount ("001", "Jordan", 100, "password");
-		System.out.println(b1.withdraw(0));
+		System.out.println(b1.withdraw(10.03));
 		System.out.println(b1.getBalance());
 		
 		
-		System.out.println(b1.withdraw(-0.0));
+		System.out.println(b1.withdraw(101));
 		System.out.println(b1.getBalance());
 		
 		
@@ -147,6 +147,6 @@ public class BankAccount {
 		
 		b1.deposit(20);
 		System.out.println(b1.getBalance());
-	}*/
+	}
 	
 }

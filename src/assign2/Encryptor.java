@@ -21,7 +21,7 @@ public class Encryptor implements Encryptable {
 			//throw new IllegalArgumentException();
 			System.out.println("You have instantiated a Encryptor object with a offset of 0 or 26, the encrypt "
 					+ "and decrypt functions will not work for this object. Please set the Offset value between 1 and "
-					+ "25 or create a new instance of an Encryptor object with an appropriate offset value.");
+					+ "25 or create a new instance of an Encryptor object with an offset between 1 and 25.");
 			this.offset = shift;
 		}
 	}
@@ -35,7 +35,8 @@ public class Encryptor implements Encryptable {
 		else
 		{
 			System.out.println("You have set the Offset for an Encryptor object with a value of 0 or 26, the encrypt "
-					+ "and decrypt functions will not work for this object.");
+					+ "and decrypt functions will not work for this object. Please set a different value for offset "
+					+ "between 1 and 25.");
 			this.offset = shift;
 		}
 	}

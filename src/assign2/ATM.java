@@ -8,7 +8,9 @@ public class ATM {
 	
 	private Encryptor passwordEncoder;
 	
-	private int firstElement = 0;
+	//Cannot be static variable, it must be per each instance
+	//of ATM.
+	private int firstElement;
 	
 	public ATM()
 	{
@@ -17,6 +19,8 @@ public class ATM {
 		//What should the offset for passwordEncoder be, should it be 1 or a random value between
 		//1 and 25?
 		passwordEncoder = new Encryptor();
+		
+		firstElement = 0;
 	}
 	
 	public void addAccount(String acctId, String name, double balance, String password)
@@ -55,27 +59,36 @@ public class ATM {
 	
 	public double getMoney(String acctId, String password, double amount)
 	{
-		int accountsLength = accounts.size();
-		for(int i = 0; i < accountsLength; i++)
+		//If there are no bankAccounts in the account array, we cannot call getMoney and we should return 0.
+		if(firstElement != 0)
 		{
-			BankAccount temp = accounts.get(i);
-			if(temp.getAccntId() == acctId)
+			int accountsLength = accounts.size();
+			for(int i = 0; i < accountsLength; i++)
 			{
-				String decryptedPassword = passwordEncoder.decrypt(temp.getPassword());
-				if(decryptedPassword.equalsIgnoreCase(password))
+				BankAccount temp = accounts.get(i);
+				if(temp.getAccntId() == acctId)
 				{
-					double withdrawnMoney = temp.withdraw(amount);
-					return withdrawnMoney;
-				}
-				else
-				{
-					System.out.println("Incorrect password case");
-					return 0.0;
+					String decryptedPassword = passwordEncoder.decrypt(temp.getPassword());
+					if(decryptedPassword.equalsIgnoreCase(password))
+					{
+						double withdrawnMoney = temp.withdraw(amount);
+						return withdrawnMoney;
+					}
+					else
+					{
+						System.out.println("Incorrect password case.");
+						return 0.0;
+					}
 				}
 			}
+			System.out.println("Account does not exist case.");
+			return 0.0;
 		}
-		System.out.println("Account does not exist case");
-		return 0.0;
+		else
+		{
+			System.out.println("No accounts exist yet, returning a value of 0.0");
+			return 0.0;
+		}
 	}
 
 	public static void main(String[] args) 
@@ -134,9 +147,9 @@ public class ATM {
 		System.out.println(a1.accounts.get(1).getName());
 		System.out.println();
 		
-		a1.addAccount("A123", "M.Jones", 1000.00, "fall-quarter");
+		a1.addAccount(null, null, 1000.00, "fall-quarter");
 		
-		System.out.println(a1.getMoney("", "", 50.00));
+		System.out.println(a1.getMoney(null, null, 50.00));
 		
 	}
 
