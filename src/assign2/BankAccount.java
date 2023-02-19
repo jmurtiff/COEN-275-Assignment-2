@@ -45,7 +45,8 @@ public class BankAccount {
 	
 	/**
 	 * The minimum balance data member is shared between all instances of BankAccount. This value is not required in the
-	 * assignment, however, when opening a BankAccount there is usually a 
+	 * assignment, however, when opening a Bank Account in the real world there is usually a minimum balance that must 
+	 * be reached for the account to be opened.
 	 */
 	private static double minimumBalance = 10.00;
 	
@@ -71,8 +72,9 @@ public class BankAccount {
 	 * also throws an Illegal Argument Exception.
 	 * 
 	 * The reason I choose to include Illegal Argument Exceptions instead of print statements is because of the test cases
-	 * that are included in the main function of the ATM class. None of the test cases include empty or null strings or balance
-	 * values less than 10.00, and as such it is okay to throw exceptions as this will not cause test cases to break or not execute.
+	 * that are included in the main function of the ATM class. None of the test cases include generating BankAccount instances with 
+	 * empty or null strings or balance values less than 10.00, and as such it is okay to throw exceptions as this will not 
+	 * cause test cases to break or not execute.
 	 * 
 	 * @param accndId the account ID value of the BankAccount instance as a String
 	 * @param name the name of the owner of the BankAccount instance as a String
@@ -257,8 +259,9 @@ public class BankAccount {
 	public static void main(String[] args) 
 	{
 		BankAccount b1 = new BankAccount ("001", "Jordan", 100, "password");
+		BankAccount b2 = new BankAccount();
 		System.out.println(b1.withdraw(0.00));
-		System.out.println(b1.getBalance());
+		System.out.println(b2.getBalance());
 		
 		
 		System.out.println(b1.withdraw(80));
