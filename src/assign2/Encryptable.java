@@ -6,6 +6,9 @@ package assign2;
  * Assignment Number: Homework Assignment #2
  * Date of Submission: February 18th, 2023
  * 
+ * @author Jordan Murtiff
+ * @version 1.0
+ * 
  * This is an interface for the encrypt and decrypt functions implemented in the Encryptor class.
  */
 public interface Encryptable {
