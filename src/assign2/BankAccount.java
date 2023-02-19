@@ -80,6 +80,10 @@ public class BankAccount {
 	 * @param name the name of the owner of the BankAccount instance as a String
 	 * @param balance the current balance of the BankAccount instance as a double
 	 * @param password the password to access the BankAccount instance as a String
+	 * @exception Empty or null string is passed for accndId
+	 * @exception Empty or null string is passed for name
+	 * @exception Balance is passed as a negative value or is below the value of minimumBalance
+	 * @exception Empty or null string is passed for password
 	 */ 
 	public BankAccount(String accndId, String name, double balance, String password)
 	{
@@ -208,7 +212,7 @@ public class BankAccount {
 		if(amount > this.balance)
 		{
 			System.out.println("The amount to withdraw is larger than the current balance of the account, please"
-					+ " withdraw a smaller amount from the account");
+					+ " withdraw a smaller amount from the account.");
 			return 0;
 		}
 		this.balance = this.balance - amount;
